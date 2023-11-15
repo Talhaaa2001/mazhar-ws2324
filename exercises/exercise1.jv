@@ -12,6 +12,7 @@ pipeline airportpipeline{
         delimiter: ";";
     }
 
+
     block tabele_int oftype TableInterpreter{
         header: true;
         columns: [
