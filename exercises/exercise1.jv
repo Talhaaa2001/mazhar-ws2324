@@ -4,7 +4,7 @@ pipeline airportpipeline{
         	url: "https://opendata.rhein-kreis-neuss.de/api/v2/catalog/datasets/rhein-kreis-neuss-flughafen-weltweit/exports/csv";
     }
 	
-    block text_filt_int oftype TextFileInterpreter{
+    block text_file_int oftype TextFileInterpreter{
 
     }
 
@@ -32,15 +32,15 @@ pipeline airportpipeline{
     }
 
 
-    block db_loader oftype SQLiteLoader {
+    block airports_loader oftype SQLiteLoader {
 		table: "airports";
 		file: "./airports.sqlite";
 	}
 
     data_extractor
-    ->text_filt_int
+    ->text_file_int
     ->csv_int
     ->tabele_int
-    ->db_loader;
+    ->airports_loader;
 
 }
